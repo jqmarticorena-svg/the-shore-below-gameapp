@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Shore Below</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/acts.css">
+  <link rel="stylesheet" href="css/sanity.css">
+</head>
+<body class="act-boot">
+  <div id="app">
+
+    <main id="stage" aria-live="polite">
+      <div id="title-screen" class="screen active">
+        <h1 class="title">THE SHORE BELOW</h1>
+        <p class="subtitle">Una historia sobre lo que queda cuando todo se pierde.</p>
+        <div class="menu">
+          <button id="btn-new">Comenzar</button>
+          <button id="btn-continue" disabled>Continuar</button>
+          <button id="btn-erase" disabled>Borrar partida</button>
+        </div>
+        <p class="hint">Pulsa una tecla o haz clic para avanzar el texto. Espacio para saltar.</p>
+      </div>
+
+      <div id="game-screen" class="screen">
+        <div id="scene-bg"></div>
+        <article id="text-pane" class="text-pane"></article>
+        <div id="choices" class="choices"></div>
+      </div>
+    </main>
+
+    <aside id="hud" class="hidden">
+      <div class="bars">
+        <div class="bar" data-bar="health">
+          <span class="bar-label">Salud</span>
+          <div class="bar-track"><div class="bar-fill" id="bar-health"></div></div>
+        </div>
+        <div class="bar" data-bar="sanity">
+          <span class="bar-label">Cordura</span>
+          <div class="bar-track"><div class="bar-fill" id="bar-sanity"></div></div>
+        </div>
+        <div class="bar" data-bar="food">
+          <span class="bar-label">Comida</span>
+          <div class="bar-track"><div class="bar-fill" id="bar-food"></div></div>
+        </div>
+        <div class="bar bar-battery hidden" data-bar="battery">
+          <span class="bar-label">Linterna</span>
+          <div class="bar-track"><div class="bar-fill" id="bar-battery"></div></div>
+        </div>
+      </div>
+      <div class="hud-buttons">
+        <button id="btn-inventory">Inventario</button>
+        <button id="btn-diary">Diario</button>
+        <button id="btn-menu">Menú</button>
+      </div>
+    </aside>
+
+    <div id="inventory-panel" class="panel hidden">
+      <header><h2>Inventario</h2><button class="close" data-close="inventory-panel">×</button></header>
+      <ul id="inventory-list" class="slots"></ul>
+      <p class="hint">Máximo cinco objetos. Para soltar uno, haz clic en el ícono de descartar.</p>
+    </div>
+
+    <div id="diary-panel" class="panel hidden">
+      <header><h2>Diario interno</h2><button class="close" data-close="diary-panel">×</button></header>
+      <ol id="diary-list" class="entries"></ol>
+    </div>
+
+    <div id="menu-panel" class="panel hidden">
+      <header><h2>Menú</h2><button class="close" data-close="menu-panel">×</button></header>
+      <div class="menu">
+        <button id="btn-save">Guardar y seguir</button>
+        <button id="btn-quit">Volver al título</button>
+      </div>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+
+    <div id="fade-overlay"></div>
+
+    <div id="end-screen" class="screen end-screen">
+      <h1 id="end-title">FIN</h1>
+      <p id="end-text"></p>
+      <button id="btn-end-title">Volver al título</button>
+    </div>
+
+  </div>
+
+  <script src="js/audio.js"></script>
+  <script src="js/content.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
