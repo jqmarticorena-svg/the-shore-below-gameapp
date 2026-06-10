@@ -1,0 +1,97 @@
+/* ============================================================
+   Per-act palette. Applied as a class on <body>.
+   Backgrounds are pure CSS gradients + textures — no images.
+   ============================================================ */
+
+/* Boot / title — deep ink */
+body.act-boot #scene-bg,
+body.act-boot {
+  background:
+    radial-gradient(ellipse at 50% 40%, #1a1a1f 0%, #0a0a0c 75%),
+    linear-gradient(180deg, #0d0d10 0%, #060608 100%);
+}
+
+/* Prólogo — el crucero: ámbar cálido nocturno */
+body.act-prologue #scene-bg {
+  background:
+    radial-gradient(ellipse at 30% 70%, rgba(200, 140, 60, 0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 20%, rgba(180, 100, 40, 0.10) 0%, transparent 50%),
+    linear-gradient(165deg, #2a1d10 0%, #1a120a 60%, #0e0907 100%);
+}
+body.act-prologue { --accent: #d4a35a; }
+
+/* Acto 1 — la orilla: gris azulado frío, amanecer desorientado */
+body.act-1 #scene-bg {
+  background:
+    radial-gradient(ellipse at 50% 90%, rgba(150, 170, 190, 0.18) 0%, transparent 60%),
+    linear-gradient(180deg, #3a4452 0%, #1f2630 55%, #14181d 100%);
+}
+body.act-1 { --accent: #8aa0b8; }
+
+/* Acto 2 — la jungla: verde oscuro casi negro, opresivo */
+body.act-2 #scene-bg {
+  background:
+    radial-gradient(ellipse at 50% 100%, rgba(40, 70, 40, 0.30) 0%, transparent 60%),
+    radial-gradient(ellipse at 10% 30%, rgba(20, 40, 20, 0.40) 0%, transparent 50%),
+    linear-gradient(180deg, #0a140a 0%, #050a05 100%);
+}
+body.act-2 { --accent: #7aa07a; }
+
+/* Acto 3 — las cuevas: negro casi total */
+body.act-3 #scene-bg {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(20, 20, 22, 0.8) 0%, transparent 40%),
+    #000000;
+}
+body.act-3 { --accent: #b0b0b0; }
+body.act-3 .text-pane { background: rgba(2, 2, 4, 0.94); }
+
+/* Acto 3 con linterna encendida */
+body.act-3.flashlight #scene-bg {
+  background:
+    radial-gradient(circle at 50% 60%, rgba(220, 210, 160, 0.10) 0%, transparent 30%),
+    radial-gradient(circle at 50% 60%, rgba(60, 55, 40, 0.30) 0%, transparent 50%),
+    #050405;
+}
+
+/* Acto 4 — el laboratorio: azul frío fluorescente */
+body.act-4 #scene-bg {
+  background:
+    repeating-linear-gradient(0deg, rgba(120, 180, 220, 0.04) 0px, transparent 2px, transparent 4px),
+    radial-gradient(ellipse at 50% 0%, rgba(120, 180, 220, 0.15) 0%, transparent 60%),
+    linear-gradient(180deg, #1a2a3a 0%, #0a1622 100%);
+}
+body.act-4 { --accent: #8ab8d8; }
+
+/* Acto 5 — la salida: varía según final */
+body.act-5 #scene-bg {
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(180, 180, 180, 0.10) 0%, transparent 60%),
+    linear-gradient(180deg, #20242a 0%, #0c0e12 100%);
+}
+body.act-5.end-good #scene-bg {
+  background: radial-gradient(ellipse at 50% 100%, rgba(220, 180, 100, 0.18) 0%, transparent 60%), #1a1410;
+}
+body.act-5.end-bad-1 #scene-bg { background: #000; }
+body.act-5.end-bad-2 #scene-bg {
+  background: radial-gradient(ellipse at 50% 80%, rgba(120, 40, 40, 0.25) 0%, transparent 60%), #0a0303;
+}
+body.act-5.end-rare #scene-bg {
+  background:
+    repeating-linear-gradient(45deg, rgba(140, 80, 60, 0.05) 0px, transparent 4px, transparent 8px),
+    linear-gradient(180deg, #1a0e0e 0%, #050202 100%);
+}
+
+/* Acto terminal: muerte / final forzado. Negro absoluto. */
+body.act--1 #scene-bg { background: #000000; }
+body.act--1 .text-pane { background: rgba(0, 0, 0, 0.96); border-color: #1a1a1a; }
+body.act--1 { --accent: #c0c0c0; }
+
+/* Transición de fade global */
+body.fading #scene-bg,
+body.fading .text-pane,
+body.fading .choices,
+body.fading #hud {
+  opacity: 0;
+  transition: opacity var(--fade-ms) ease;
+}

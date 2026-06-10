@@ -1,0 +1,94 @@
+/* ============================================================
+   Cordura baja — el texto y la interfaz se vuelven inestables.
+   ============================================================ */
+
+/* sanity 40-60: ligera vibración del texto */
+body.sanity-low .text-pane {
+  animation: text-flicker 6s ease-in-out infinite;
+}
+@keyframes text-flicker {
+  0%, 92%, 100% { filter: none; }
+  93% { filter: brightness(1.15) blur(0.3px); }
+  95% { filter: brightness(0.85); }
+  97% { filter: none; }
+}
+
+/* sanity 20-40: caracteres se desplazan, glitch ocasional */
+body.sanity-mid .text-pane {
+  animation: text-flicker 4s ease-in-out infinite;
+}
+body.sanity-mid .text-pane p {
+  animation: char-shift 3.5s ease-in-out infinite;
+}
+@keyframes char-shift {
+  0%, 88%, 100% { transform: translateX(0); letter-spacing: normal; }
+  89% { transform: translateX(1px); letter-spacing: 0.02em; }
+  91% { transform: translateX(-1px); letter-spacing: -0.01em; }
+  93% { transform: translateX(0); }
+}
+
+/* sanity < 20: la interfaz cruje */
+body.sanity-critical .text-pane {
+  animation: critical-flicker 2.5s ease-in-out infinite;
+}
+body.sanity-critical #hud { animation: hud-jitter 5s ease-in-out infinite; }
+body.sanity-critical .text-pane p { animation: critical-shift 2s ease-in-out infinite; }
+body.sanity-critical #scene-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent 0px, rgba(120, 30, 30, 0.04) 1px, transparent 2px, transparent 4px);
+  pointer-events: none;
+  animation: scanlines 0.2s steps(2) infinite;
+}
+@keyframes critical-flicker {
+  0%, 70%, 100% { filter: none; }
+  72% { filter: hue-rotate(15deg) brightness(0.6); }
+  74% { filter: invert(0.08) brightness(1.4); }
+  76% { filter: none; }
+  82% { filter: blur(0.8px); }
+  84% { filter: none; }
+}
+@keyframes critical-shift {
+  0%, 80%, 100% { transform: translateX(0); }
+  82% { transform: translateX(3px) skewX(-0.5deg); }
+  84% { transform: translateX(-2px); }
+  86% { transform: translateX(1px) skewX(0.3deg); }
+  88% { transform: translateX(0); }
+}
+@keyframes hud-jitter {
+  0%, 88%, 100% { transform: none; }
+  90% { transform: translate(1px, -1px); }
+  92% { transform: translate(-1px, 1px); }
+  94% { transform: none; }
+}
+@keyframes scanlines {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(2px); }
+}
+
+/* Char-level glitch: aleatorio en spans marcados desde JS */
+.glitch-char {
+  display: inline-block;
+  animation: char-flash 1.4s ease-in-out infinite;
+  animation-delay: calc(var(--g, 0) * 100ms);
+}
+@keyframes char-flash {
+  0%, 60%, 100% { opacity: 1; transform: translateY(0); }
+  70% { opacity: 0.2; transform: translateY(-1px); }
+  72% { opacity: 1; transform: translateY(1px); }
+  74% { opacity: 0.4; transform: translateY(0); }
+}
+
+.glitch-char.severe {
+  animation: char-severe 0.9s ease-in-out infinite;
+  color: inherit;
+}
+@keyframes char-severe {
+  0%, 40%, 100% { opacity: 1; transform: translate(0, 0); letter-spacing: normal; }
+  45% { opacity: 0.15; transform: translate(2px, -2px); letter-spacing: 0.08em; }
+  50% { opacity: 1; transform: translate(-2px, 1px); }
+  55% { opacity: 0.4; transform: translate(1px, 0); }
+  60% { opacity: 1; transform: translate(0, -1px) skewX(-2deg); }
+  65% { opacity: 0.7; transform: translate(0, 0); }
+}
